@@ -1,8 +1,12 @@
+import 'dart:html';
+import 'dart:io';
+
 import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'package:flutter/material.dart';
-import 'package:same_wave_app/components/custom_background.dart';
+import 'package:go_router/go_router.dart';
 import 'package:same_wave_app/resources/app_assets/app_assets.dart';
 import 'package:same_wave_app/resources/theme/app_colors.dart';
+import 'package:same_wave_app/routes/route_paths.dart';
 
 class CustomMenu extends StatefulWidget {
   const CustomMenu({
@@ -73,6 +77,8 @@ class _CustomMenuState extends State<CustomMenu> {
                   title: 'Dashboard',
                   onTap: (index, _) {
                     sideMenu.changePage(index);
+                    print('123');
+                    context.push(RoutePaths.dashboardRoutePath);
                   },
                   icon: const Icon(Icons.home),
                   badgeContent: const Text(
@@ -81,37 +87,7 @@ class _CustomMenuState extends State<CustomMenu> {
                   ),
                   tooltipContent: "This is a tooltip for Dashboard item",
                 ),
-                SideMenuItem(
-                  title: 'Users',
-                  onTap: (index, _) {
-                    sideMenu.changePage(index);
-                  },
-                  icon: const Icon(Icons.supervisor_account),
-                ),
-                SideMenuItem(
-                  title: 'Files',
-                  onTap: (index, _) {
-                    sideMenu.changePage(index);
-                  },
-                  icon: const Icon(Icons.file_copy_rounded),
-                  trailing: Container(
-                      decoration: const BoxDecoration(
-                          color: Colors.amber, borderRadius: BorderRadius.all(Radius.circular(6))),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 3),
-                        child: Text(
-                          'New',
-                          style: TextStyle(fontSize: 11, color: Colors.grey[800]),
-                        ),
-                      )),
-                ),
-                SideMenuItem(
-                  title: 'Download',
-                  onTap: (index, _) {
-                    sideMenu.changePage(index);
-                  },
-                  icon: const Icon(Icons.download),
-                ),
+
                 SideMenuItem(
                   builder: (context, displayMode) {
                     return const Divider(
@@ -124,6 +100,7 @@ class _CustomMenuState extends State<CustomMenu> {
                   title: 'Settings',
                   onTap: (index, _) {
                     sideMenu.changePage(index);
+                    context.push(RoutePaths.settingsRoutePath);
                   },
                   icon: const Icon(Icons.settings),
                 ),
@@ -139,82 +116,85 @@ class _CustomMenuState extends State<CustomMenu> {
                 //     sideMenu.changePage(index);
                 //   },
                 // ),
-                const SideMenuItem(
+                SideMenuItem(
                   title: 'Exit',
-                  icon: Icon(Icons.exit_to_app),
+                  icon: const Icon(Icons.exit_to_app),
+                  onTap: (index, _) {
+                    window.close();
+                  },
                 ),
               ],
             ),
-            Expanded(
-              child: PageView(
-                controller: pageController,
-                children: [
-                  Container(
-                    color: Colors.white,
-                    child: const Center(
-                      child: Text(
-                        'Dashboard',
-                        style: TextStyle(fontSize: 35),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    color: Colors.white,
-                    child: const Center(
-                      child: Text(
-                        'Users',
-                        style: TextStyle(fontSize: 35),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    color: Colors.white,
-                    child: const Center(
-                      child: Text(
-                        'Files',
-                        style: TextStyle(fontSize: 35),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    color: Colors.white,
-                    child: const Center(
-                      child: Text(
-                        'Download',
-                        style: TextStyle(fontSize: 35),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    color: Colors.white,
-                    child: const Center(
-                      child: Text(
-                        'Settings',
-                        style: TextStyle(fontSize: 35),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    color: Colors.white,
-                    child: const Center(
-                      child: Text(
-                        'Only Title',
-                        style: TextStyle(fontSize: 35),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    color: Colors.white,
-                    child: const Center(
-                      child: Text(
-                        'Only Icon',
-                        style: TextStyle(fontSize: 35),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            // Expanded(
+            //   child: PageView(
+            //     controller: pageController,
+            //     children: [
+            //       Container(
+            //         color: Colors.white,
+            //         child: const Center(
+            //           child: Text(
+            //             'Dashboard',
+            //             style: TextStyle(fontSize: 35),
+            //           ),
+            //         ),
+            //       ),
+            //       Container(
+            //         color: Colors.white,
+            //         child: const Center(
+            //           child: Text(
+            //             'Users',
+            //             style: TextStyle(fontSize: 35),
+            //           ),
+            //         ),
+            //       ),
+            //       Container(
+            //         color: Colors.white,
+            //         child: const Center(
+            //           child: Text(
+            //             'Files',
+            //             style: TextStyle(fontSize: 35),
+            //           ),
+            //         ),
+            //       ),
+            //       Container(
+            //         color: Colors.white,
+            //         child: const Center(
+            //           child: Text(
+            //             'Download',
+            //             style: TextStyle(fontSize: 35),
+            //           ),
+            //         ),
+            //       ),
+            //       Container(
+            //         color: Colors.white,
+            //         child: const Center(
+            //           child: Text(
+            //             'Settings',
+            //             style: TextStyle(fontSize: 35),
+            //           ),
+            //         ),
+            //       ),
+            //       Container(
+            //         color: Colors.white,
+            //         child: const Center(
+            //           child: Text(
+            //             'Only Title',
+            //             style: TextStyle(fontSize: 35),
+            //           ),
+            //         ),
+            //       ),
+            //       Container(
+            //         color: Colors.white,
+            //         child: const Center(
+            //           child: Text(
+            //             'Only Icon',
+            //             style: TextStyle(fontSize: 35),
+            //           ),
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
           ],
         ),
       ],
