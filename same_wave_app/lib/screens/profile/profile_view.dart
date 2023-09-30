@@ -2,18 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:same_wave_app/components/custom_background.dart';
 import 'package:same_wave_app/components/custom_menu/custom_menu.dart';
 import 'package:same_wave_app/resources/app_assets/app_assets.dart';
+import 'package:same_wave_app/screens/profile/profile.dart';
 
-import 'home.dart';
-
-class HomeScreenView extends StatefulWidget {
-  final HomeScreenState state;
-  const HomeScreenView(this.state, {super.key});
+class ProfileScreenView extends StatefulWidget {
+  final ProfileScreenState state;
+  const ProfileScreenView(this.state, {super.key});
 
   @override
-  State<HomeScreenView> createState() => _HomeScreenViewState();
+  State<ProfileScreenView> createState() => _ProfileScreenViewState();
 }
 
-class _HomeScreenViewState extends State<HomeScreenView> {
+class _ProfileScreenViewState extends State<ProfileScreenView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +25,7 @@ class _HomeScreenViewState extends State<HomeScreenView> {
               Center(
                 child: Card(
                   child: Text(
-                    'Home',
+                    'Profile',
                     style: TextStyle(fontSize: 40),
                   ),
                 ),

@@ -2,18 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:same_wave_app/components/custom_background.dart';
 import 'package:same_wave_app/components/custom_menu/custom_menu.dart';
 import 'package:same_wave_app/resources/app_assets/app_assets.dart';
+import 'package:same_wave_app/screens/projects/projects.dart';
 
-import 'home.dart';
-
-class HomeScreenView extends StatefulWidget {
-  final HomeScreenState state;
-  const HomeScreenView(this.state, {super.key});
+class ProjectsScreenView extends StatefulWidget {
+  final ProjectsScreenState state;
+  const ProjectsScreenView(this.state, {super.key});
 
   @override
-  State<HomeScreenView> createState() => _HomeScreenViewState();
+  State<ProjectsScreenView> createState() => _ProjectsScreenViewState();
 }
 
-class _HomeScreenViewState extends State<HomeScreenView> {
+class _ProjectsScreenViewState extends State<ProjectsScreenView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +25,7 @@ class _HomeScreenViewState extends State<HomeScreenView> {
               Center(
                 child: Card(
                   child: Text(
-                    'Home',
+                    'Projects',
                     style: TextStyle(fontSize: 40),
                   ),
                 ),

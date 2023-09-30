@@ -129,6 +129,18 @@ class SettingsScreenView extends StatelessWidget {
             },
           ),
           const CustomMenu(),
+          const Column(
+            children: [
+              Center(
+                child: Card(
+                  child: Text(
+                    'Settings',
+                    style: TextStyle(fontSize: 40),
+                  ),
+                ),
+              ),
+            ],
+          )
         ],
       ),
     );
