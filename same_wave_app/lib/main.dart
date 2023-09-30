@@ -4,6 +4,7 @@ import 'package:same_wave_app/provider/app/app_state.dart';
 import 'package:same_wave_app/provider/menu/menu_state.dart';
 import 'package:same_wave_app/provider/settings/settings_state.dart';
 import 'package:same_wave_app/screens/home/home.dart';
+import 'package:same_wave_app/screens/settings/settings.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
