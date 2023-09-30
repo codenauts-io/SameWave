@@ -1,4 +1,4 @@
 class AppAssets {
-  static String distanceBackground = "assets/distance_background.jpg";
+  static String dreamCitybackground = "assets/dream_city.jpg";
   static String menuBackground = "assets/menu_background.jpg";
 }
