@@ -3,7 +3,13 @@ import 'package:same_wave_app/resources/tools/color_changer.dart';
 
 class AppColors {
   static const Color whiteColor = Colors.white;
-  static const Color blackColor = Colors.black;
+  static const Color blackColor = Color(0xFF1C1C1C);
+  static const Color blue = Color(0xFF415CE9);
+  static const Color grey = Color(0xFFBEBEBE);
+  static const Color lightGrey = Color(0xFFF3F3F3);
+
+
+
   static const Color greyColor = Colors.grey;
   static const Color blueGreyColor = Colors.blueGrey;
   static const Color transparent = Colors.transparent;

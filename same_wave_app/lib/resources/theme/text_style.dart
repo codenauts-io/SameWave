@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:same_wave_app/resources/theme/app_colors.dart';
 
 @immutable
 class TextThemeExtension extends ThemeExtension<TextThemeExtension> {
@@ -38,9 +39,8 @@ class TextThemeExtension extends ThemeExtension<TextThemeExtension> {
     required this.labelLarge,
   });
 
-  // Fabryczna metoda do tworzenia instancji klasy TextThemeExtension
   factory TextThemeExtension() {
-    const String mainFontFamily = 'RaleWay';
+    const String mainFontFamily = 'DMSans';
     return const TextThemeExtension._(
       bodySmall: TextStyle(
         fontFamily: mainFontFamily,
@@ -57,10 +57,12 @@ class TextThemeExtension extends ThemeExtension<TextThemeExtension> {
       headlineSmall: TextStyle(
         fontFamily: mainFontFamily,
         fontSize: 18.0,
+        fontWeight: FontWeight.w600,
+        color: AppColors.blackColor
       ),
       headlineMedium: TextStyle(
         fontFamily: mainFontFamily,
-        fontSize: 20.0,
+        fontSize: 18.0,
       ),
       headlineLarge: TextStyle(
         fontFamily: mainFontFamily,

@@ -1,8 +1,10 @@
 import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'package:flutter/material.dart';
-import 'package:same_wave_app/components/custom_background.dart';
+import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:same_wave_app/resources/app_assets/app_assets.dart';
 import 'package:same_wave_app/resources/theme/app_colors.dart';
+
+import '../../resources/theme/text_style.dart';
 
 class CustomMenu extends StatefulWidget {
   const CustomMenu({
@@ -16,8 +18,17 @@ class CustomMenu extends StatefulWidget {
 class _CustomMenuState extends State<CustomMenu> {
   PageController pageController = PageController();
   SideMenuController sideMenu = SideMenuController();
+
+  SideMenuItem getSpacer() {
+    return SideMenuItem(
+      builder: (context, displayMode) {
+        return const SizedBox(height: 12);
+      },
+    );
+  }
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).extension<TextThemeExtension>()!;
     return Stack(
       children: [
         Row(
@@ -26,194 +37,163 @@ class _CustomMenuState extends State<CustomMenu> {
             SideMenu(
               controller: sideMenu,
               style: SideMenuStyle(
-                  showTooltip: false,
-                  displayMode: SideMenuDisplayMode.auto,
-                  hoverColor: Colors.blue[100],
-                  selectedHoverColor: Colors.blue[100],
-                  selectedColor: AppColors.transparent,
-                  selectedTitleTextStyle: const TextStyle(color: Colors.white),
-                  selectedIconColor: Colors.white,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                  ),
-                  backgroundColor: AppColors.greyColor),
-              title: Column(
-                children: [
-                  ConstrainedBox(
-                    constraints: const BoxConstraints(
-                      maxHeight: 150,
-                      maxWidth: 150,
-                    ),
-                    child: Image.asset(
-                      AppAssets.dreamCitybackground,
-                    ),
-                  ),
-                  const Divider(
-                    indent: 8.0,
-                    endIndent: 8.0,
-                  ),
-                ],
+                showTooltip: false,
+                displayMode: SideMenuDisplayMode.auto,
+
+                backgroundColor: Colors.white,
+                unselectedIconColor: AppColors.blackColor,
+                unselectedTitleTextStyle: textTheme.headlineSmall,
+
+                selectedColor: AppColors.lightGrey,
+                selectedIconColor: AppColors.blue,
+                selectedTitleTextStyle: textTheme.headlineSmall.merge(const TextStyle(color: AppColors.blue)),
+
+                hoverColor: AppColors.lightGrey,
+                selectedHoverColor: AppColors.lightGrey,
+                itemOuterPadding: const EdgeInsets.symmetric(horizontal: 32),
+                itemInnerSpacing: 8,
+                itemHeight: 40,
+
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.zero,
+                )
+              ),
+              title: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 8),
+                child: Image.asset(
+                  AppAssets.logo,
+                ),
               ),
               footer: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: Colors.lightBlue[100], borderRadius: BorderRadius.circular(12)),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
-                    child: Text(
-                      'Codenauts',
-                      style: TextStyle(fontSize: 15, color: Colors.grey[800]),
-                    ),
-                  ),
+                padding: const EdgeInsets.symmetric(vertical: 32),
+                child: SideMenuItem(
+                  title: 'Support Center',
+                  onTap: (index, _) {
+                    sideMenu.changePage(index);
+                  },
+                  icon: const Icon(TablerIcons.help_hexagon),
                 ),
               ),
               items: [
+                SideMenuItem(
+                  builder: (context, displayMode) {
+                    return const Divider(
+                      endIndent: 0,
+                      indent: 0,
+                    );
+                  },
+                ),
+                getSpacer(),
+                SideMenuItem(
+                  builder: (context, displayMode) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 32),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.all(Radius.circular(5)),
+                          color: AppColors.lightGrey,
+                          border: Border.all(width: 1.0, color: AppColors.grey)
+                        ),
+                        child: Row(
+                          children: <Widget>[
+                            const Icon(TablerIcons.search),
+                            const SizedBox(width: 8),
+                            Text(
+                              'Search',
+                              style: textTheme.headlineSmall.merge(const TextStyle(fontSize: 16)),
+                            )
+                          ],
+                        ),
+                      )
+                    );
+                  },
+                ),
+                getSpacer(),
+                getSpacer(),
+                SideMenuItem(
+                  builder: (context, displayMode) {
+                    return const Padding(
+                      padding:  EdgeInsets.symmetric(horizontal: 32),
+                      child: Text(
+                        'FEATURES',
+                        style: TextStyle(
+                            color: AppColors.grey,
+                            fontWeight: FontWeight.w500
+                        ),
+                      ),
+                    );
+                  },
+                ),
+                getSpacer(),
                 SideMenuItem(
                   title: 'Dashboard',
                   onTap: (index, _) {
                     sideMenu.changePage(index);
                   },
-                  icon: const Icon(Icons.home),
-                  badgeContent: const Text(
-                    '3',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  tooltipContent: "This is a tooltip for Dashboard item",
+                  icon: const Icon(TablerIcons.home),
                 ),
+                getSpacer(),
                 SideMenuItem(
-                  title: 'Users',
+                  title: 'Projects',
                   onTap: (index, _) {
                     sideMenu.changePage(index);
                   },
-                  icon: const Icon(Icons.supervisor_account),
+                  icon: const Icon(TablerIcons.folder),
+                  trailing: const Icon(TablerIcons.chevron_down),
                 ),
+                getSpacer(),
                 SideMenuItem(
-                  title: 'Files',
+                  title: 'Profile',
                   onTap: (index, _) {
                     sideMenu.changePage(index);
                   },
-                  icon: const Icon(Icons.file_copy_rounded),
-                  trailing: Container(
-                      decoration: const BoxDecoration(
-                          color: Colors.amber, borderRadius: BorderRadius.all(Radius.circular(6))),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 3),
-                        child: Text(
-                          'New',
-                          style: TextStyle(fontSize: 11, color: Colors.grey[800]),
-                        ),
-                      )),
+                  icon: const Icon(TablerIcons.user),
                 ),
-                SideMenuItem(
-                  title: 'Download',
-                  onTap: (index, _) {
-                    sideMenu.changePage(index);
-                  },
-                  icon: const Icon(Icons.download),
-                ),
+                getSpacer(),
                 SideMenuItem(
                   builder: (context, displayMode) {
-                    return const Divider(
-                      endIndent: 8,
-                      indent: 8,
+                    return const Padding(
+                      padding:  EdgeInsets.symmetric(horizontal: 32),
+                      child: Text(
+                        'COMPANY',
+                        style: TextStyle(
+                            color: AppColors.grey,
+                            fontWeight: FontWeight.w500
+                        ),
+                      ),
                     );
                   },
                 ),
+                getSpacer(),
                 SideMenuItem(
-                  title: 'Settings',
+                  title: 'Payments',
                   onTap: (index, _) {
                     sideMenu.changePage(index);
                   },
-                  icon: const Icon(Icons.settings),
+                  icon: const Icon(TablerIcons.credit_card),
                 ),
-                // SideMenuItem(
-                //   onTap:(index, _){
-                //     sideMenu.changePage(index);
-                //   },
-                //   icon: const Icon(Icons.image_rounded),
-                // ),
-                // SideMenuItem(
-                //   title: 'Only Title',
-                //   onTap:(index, _){
-                //     sideMenu.changePage(index);
-                //   },
-                // ),
+                getSpacer(),
                 const SideMenuItem(
-                  title: 'Exit',
-                  icon: Icon(Icons.exit_to_app),
+                  title: 'Files',
+                  icon: Icon(TablerIcons.file),
+                ),
+                getSpacer(),
+                const SideMenuItem(
+                  title: 'Calendar',
+                  icon: Icon(TablerIcons.calendar),
+                ),
+                getSpacer(),
+                const SideMenuItem(
+                  title: 'Inbox',
+                  icon: Icon(TablerIcons.inbox),
+                ),
+                getSpacer(),
+                const SideMenuItem(
+                  title: 'Settings',
+                  icon: Icon(TablerIcons.settings),
                 ),
               ],
-            ),
-            Expanded(
-              child: PageView(
-                controller: pageController,
-                children: [
-                  Container(
-                    color: Colors.white,
-                    child: const Center(
-                      child: Text(
-                        'Dashboard',
-                        style: TextStyle(fontSize: 35),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    color: Colors.white,
-                    child: const Center(
-                      child: Text(
-                        'Users',
-                        style: TextStyle(fontSize: 35),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    color: Colors.white,
-                    child: const Center(
-                      child: Text(
-                        'Files',
-                        style: TextStyle(fontSize: 35),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    color: Colors.white,
-                    child: const Center(
-                      child: Text(
-                        'Download',
-                        style: TextStyle(fontSize: 35),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    color: Colors.white,
-                    child: const Center(
-                      child: Text(
-                        'Settings',
-                        style: TextStyle(fontSize: 35),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    color: Colors.white,
-                    child: const Center(
-                      child: Text(
-                        'Only Title',
-                        style: TextStyle(fontSize: 35),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    color: Colors.white,
-                    child: const Center(
-                      child: Text(
-                        'Only Icon',
-                        style: TextStyle(fontSize: 35),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
             ),
           ],
         ),
