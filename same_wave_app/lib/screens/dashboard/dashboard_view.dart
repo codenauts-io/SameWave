@@ -19,14 +19,14 @@ class _DashboardScreenViewState extends State<DashboardScreenView> {
   Widget build(BuildContext context) {
     // final AppState appState = Provider.of<AppState>(context);
     // final textTheme = Theme.of(context).extension<TextThemeExtension>()!;
-    return Scaffold(
-      appBar: AppBar(
-        title: CustomMenu(
-          image: AppAssets.dreamCitybackground,
-        ),
-      ),
-      body: const Stack(
-        children: [],
+    return const Scaffold(
+      // appBar: AppBar(
+      //   title: const CustomMenu(),
+      // ),
+      body: Stack(
+        children: [
+          CustomMenu(),
+        ],
       ),
     );
   }
