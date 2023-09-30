@@ -1,213 +1,206 @@
 import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:same_wave_app/resources/app_assets/app_assets.dart';
 import 'package:same_wave_app/resources/theme/app_colors.dart';
-import 'package:same_wave_app/routes/route_paths.dart';
+
+import '../../resources/theme/text_style.dart';
 
 class CustomMenu extends StatefulWidget {
+
+  final SideMenuController sideMenu;
+  final PageController pageController;
+
   const CustomMenu({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+    required this.sideMenu,
+    required this.pageController
+  });
 
   @override
   State<CustomMenu> createState() => _CustomMenuState();
 }
 
 class _CustomMenuState extends State<CustomMenu> {
-  PageController pageController = PageController();
-  SideMenuController sideMenu = SideMenuController();
+  SideMenuItem getSpacer() {
+    return SideMenuItem(
+      builder: (context, displayMode) {
+        return const SizedBox(height: 12);
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.start,
+    final textTheme = Theme.of(context).extension<TextThemeExtension>()!;
+    return Stack(
       children: [
-        SideMenu(
-          controller: sideMenu,
-          style: SideMenuStyle(
-              showTooltip: false,
-              displayMode: SideMenuDisplayMode.auto,
-              hoverColor: Colors.blue[100],
-              selectedHoverColor: Colors.blue[100],
-              selectedColor: AppColors.transparent,
-              selectedTitleTextStyle: const TextStyle(color: Colors.white),
-              selectedIconColor: Colors.white,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SideMenu(
+              controller: widget.sideMenu,
+              style: SideMenuStyle(
+                showTooltip: false,
+                displayMode: SideMenuDisplayMode.auto,
+
+                backgroundColor: Colors.white,
+                unselectedIconColor: AppColors.blackColor,
+                unselectedTitleTextStyle: textTheme.headlineSmall,
+
+                selectedColor: AppColors.lightGrey,
+                selectedIconColor: AppColors.blue,
+                selectedTitleTextStyle: textTheme.headlineSmall.merge(const TextStyle(color: AppColors.blue)),
+
+                hoverColor: AppColors.lightGrey,
+                selectedHoverColor: AppColors.lightGrey,
+                itemOuterPadding: const EdgeInsets.symmetric(horizontal: 32),
+                itemInnerSpacing: 8,
+                itemHeight: 40,
+
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.zero,
+                )
               ),
-              backgroundColor: AppColors.greyColor),
-          title: Column(
-            children: [
-              ConstrainedBox(
-                constraints: const BoxConstraints(
-                  maxHeight: 150,
-                  maxWidth: 150,
-                ),
+              title: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 8),
                 child: Image.asset(
-                  AppAssets.dreamCitybackground,
+                  AppAssets.logo,
                 ),
               ),
-              const Divider(
-                indent: 8.0,
-                endIndent: 8.0,
-              ),
-            ],
-          ),
-          footer: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.lightBlue[100], borderRadius: BorderRadius.circular(12)),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
-                child: Text(
-                  'Codenauts',
-                  style: TextStyle(fontSize: 15, color: Colors.grey[800]),
+              footer: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 32),
+                child: SideMenuItem(
+                  title: 'Support Center',
+                  onTap: (index, _) {
+                    widget.sideMenu.changePage(index);
+                  },
+                  icon: const Icon(TablerIcons.help_hexagon),
                 ),
               ),
-            ),
-          ),
-          items: [
-            const SideMenuItem(
-              title: 'Feature',
-            ),
-            SideMenuItem(
-              title: 'Dashboard',
-              onTap: (index, _) {
-                sideMenu.changePage(index);
-                context.push(RoutePaths.dashboardRoutePath);
-              },
-              icon: const Icon(Icons.dashboard),
-              badgeContent: const Text(
-                '3',
-                style: TextStyle(color: Colors.white),
-              ),
-              tooltipContent: "This is a tooltip for Dashboard item",
-            ),
-            SideMenuItem(
-              title: 'Projects',
-              onTap: (index, _) {
-                sideMenu.changePage(index);
-                context.push(RoutePaths.projectsRoutePath);
-              },
-              icon: const Icon(Icons.folder),
-            ),
-            SideMenuItem(
-              title: 'Profile',
-              onTap: (index, _) {
-                sideMenu.changePage(index);
-                context.push(RoutePaths.profileRoutePath);
-              },
-              icon: const Icon(Icons.person),
-            ),
-            SideMenuItem(
-              builder: (context, displayMode) {
-                return const Divider(
-                  endIndent: 8,
-                  indent: 8,
-                );
-              },
-            ),
-            const SideMenuItem(
-              title: 'Company',
-            ),
-            SideMenuItem(
-              title: 'Payments',
-              onTap: (index, _) {
-                sideMenu.changePage(index);
-                context.push(RoutePaths.paymentsRoutePath);
-              },
-              icon: const Icon(Icons.payment),
-            ),
-            SideMenuItem(
-              title: 'Home',
-              onTap: (index, _) {
-                sideMenu.changePage(index);
-                context.push(RoutePaths.homeRoutePath);
-              },
-              icon: const Icon(Icons.home),
-            ),
-            SideMenuItem(
-              title: 'Settings',
-              onTap: (index, _) {
-                sideMenu.changePage(index);
-                context.push(RoutePaths.settingsRoutePath);
-              },
-              icon: const Icon(Icons.settings),
+              items: [
+                SideMenuItem(
+                  builder: (context, displayMode) {
+                    return const Divider(
+                      endIndent: 0,
+                      indent: 0,
+                    );
+                  },
+                ),
+                getSpacer(),
+                SideMenuItem(
+                  builder: (context, displayMode) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 32),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.all(Radius.circular(5)),
+                          color: AppColors.lightGrey,
+                          border: Border.all(width: 1.0, color: AppColors.grey)
+                        ),
+                        child: Row(
+                          children: <Widget>[
+                            const Icon(TablerIcons.search),
+                            const SizedBox(width: 8),
+                            Text(
+                              'Search',
+                              style: textTheme.headlineSmall.merge(const TextStyle(fontSize: 16)),
+                            )
+                          ],
+                        ),
+                      )
+                    );
+                  },
+                ),
+                getSpacer(),
+                getSpacer(),
+                SideMenuItem(
+                  builder: (context, displayMode) {
+                    return const Padding(
+                      padding:  EdgeInsets.symmetric(horizontal: 32),
+                      child: Text(
+                        'FEATURES',
+                        style: TextStyle(
+                            color: AppColors.grey,
+                            fontWeight: FontWeight.w500
+                        ),
+                      ),
+                    );
+                  },
+                ),
+                getSpacer(),
+                SideMenuItem(
+                  title: 'Dashboard 2',
+                  onTap: (index, _) {
+                    widget.sideMenu.changePage(0);
+                  },
+                  icon: const Icon(TablerIcons.home),
+                ),
+                getSpacer(),
+                SideMenuItem(
+                  title: 'Projects',
+                  onTap: (index, _) {
+                    widget.sideMenu.changePage(1);
+                  },
+                  icon: const Icon(TablerIcons.folder),
+                  trailing: const Icon(TablerIcons.chevron_down),
+                ),
+                getSpacer(),
+                SideMenuItem(
+                  title: 'Profile',
+                  onTap: (index, _) {
+                    widget.sideMenu.changePage(index);
+                  },
+                  icon: const Icon(TablerIcons.user),
+                ),
+                getSpacer(),
+                SideMenuItem(
+                  builder: (context, displayMode) {
+                    return const Padding(
+                      padding:  EdgeInsets.symmetric(horizontal: 32),
+                      child: Text(
+                        'COMPANY',
+                        style: TextStyle(
+                            color: AppColors.grey,
+                            fontWeight: FontWeight.w500
+                        ),
+                      ),
+                    );
+                  },
+                ),
+                getSpacer(),
+                SideMenuItem(
+                  title: 'Payments',
+                  onTap: (index, _) {
+                    widget.sideMenu.changePage(index);
+                  },
+                  icon: const Icon(TablerIcons.credit_card),
+                ),
+                getSpacer(),
+                const SideMenuItem(
+                  title: 'Files',
+                  icon: Icon(TablerIcons.file),
+                ),
+                getSpacer(),
+                const SideMenuItem(
+                  title: 'Calendar',
+                  icon: Icon(TablerIcons.calendar),
+                ),
+                getSpacer(),
+                const SideMenuItem(
+                  title: 'Inbox',
+                  icon: Icon(TablerIcons.inbox),
+                ),
+                getSpacer(),
+                const SideMenuItem(
+                  title: 'Settings',
+                  icon: Icon(TablerIcons.settings),
+                ),
+              ],
             ),
           ],
         ),
-        // Expanded(
-        //   child: PageView(
-        //     controller: pageController,
-        //     children: [
-        //       Container(
-        //         color: Colors.white,
-        //         child: const Center(
-        //           child: Text(
-        //             'Dashboard',
-        //             style: TextStyle(fontSize: 35),
-        //           ),
-        //         ),
-        //       ),
-        //       Container(
-        //         color: Colors.white,
-        //         child: const Center(
-        //           child: Text(
-        //             'Users',
-        //             style: TextStyle(fontSize: 35),
-        //           ),
-        //         ),
-        //       ),
-        //       Container(
-        //         color: Colors.white,
-        //         child: const Center(
-        //           child: Text(
-        //             'Files',
-        //             style: TextStyle(fontSize: 35),
-        //           ),
-        //         ),
-        //       ),
-        //       Container(
-        //         color: Colors.white,
-        //         child: const Center(
-        //           child: Text(
-        //             'Download',
-        //             style: TextStyle(fontSize: 35),
-        //           ),
-        //         ),
-        //       ),
-        //       Container(
-        //         color: Colors.white,
-        //         child: const Center(
-        //           child: Text(
-        //             'Settings',
-        //             style: TextStyle(fontSize: 35),
-        //           ),
-        //         ),
-        //       ),
-        //       Container(
-        //         color: Colors.white,
-        //         child: const Center(
-        //           child: Text(
-        //             'Only Title',
-        //             style: TextStyle(fontSize: 35),
-        //           ),
-        //         ),
-        //       ),
-        //       Container(
-        //         color: Colors.white,
-        //         child: const Center(
-        //           child: Text(
-        //             'Only Icon',
-        //             style: TextStyle(fontSize: 35),
-        //           ),
-        //         ),
-        //       ),
-        //     ],
-        //   ),
-        // ),
       ],
     );
   }
