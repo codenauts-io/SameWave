@@ -36,7 +36,7 @@ class _CustomMenuState extends State<CustomMenu> {
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
-                  backgroundColor: Colors.blueGrey[700]),
+                  backgroundColor: AppColors.greyColor),
               title: Column(
                 children: [
                   ConstrainedBox(
@@ -45,7 +45,7 @@ class _CustomMenuState extends State<CustomMenu> {
                       maxWidth: 150,
                     ),
                     child: Image.asset(
-                      AppAssets.menuBackground,
+                      AppAssets.dreamCitybackground,
                     ),
                   ),
                   const Divider(
@@ -73,7 +73,6 @@ class _CustomMenuState extends State<CustomMenu> {
                   title: 'Dashboard',
                   onTap: (index, _) {
                     sideMenu.changePage(index);
-                    print(sideMenu.currentPage);
                   },
                   icon: const Icon(Icons.home),
                   badgeContent: const Text(
@@ -146,75 +145,80 @@ class _CustomMenuState extends State<CustomMenu> {
                 ),
               ],
             ),
-            Expanded(
-              child: PageView(
-                controller: pageController,
-                children: [
-                  Container(
-                    color: Colors.white,
-                    child: const Center(
-                      child: Text(
-                        'Dashboard',
-                        style: TextStyle(fontSize: 35),
+            Stack(
+              children: [
+                CustomBackground(image: AppAssets.menuBackground),
+                Expanded(
+                  child: PageView(
+                    controller: pageController,
+                    children: [
+                      Container(
+                        color: Colors.white,
+                        child: const Center(
+                          child: Text(
+                            'Dashboard',
+                            style: TextStyle(fontSize: 35),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  Container(
-                    color: Colors.white,
-                    child: const Center(
-                      child: Text(
-                        'Users',
-                        style: TextStyle(fontSize: 35),
+                      Container(
+                        color: Colors.white,
+                        child: const Center(
+                          child: Text(
+                            'Users',
+                            style: TextStyle(fontSize: 35),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  Container(
-                    color: Colors.white,
-                    child: const Center(
-                      child: Text(
-                        'Files',
-                        style: TextStyle(fontSize: 35),
+                      Container(
+                        color: Colors.white,
+                        child: const Center(
+                          child: Text(
+                            'Files',
+                            style: TextStyle(fontSize: 35),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  Container(
-                    color: Colors.white,
-                    child: const Center(
-                      child: Text(
-                        'Download',
-                        style: TextStyle(fontSize: 35),
+                      Container(
+                        color: Colors.white,
+                        child: const Center(
+                          child: Text(
+                            'Download',
+                            style: TextStyle(fontSize: 35),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  Container(
-                    color: Colors.white,
-                    child: const Center(
-                      child: Text(
-                        'Settings',
-                        style: TextStyle(fontSize: 35),
+                      Container(
+                        color: Colors.white,
+                        child: const Center(
+                          child: Text(
+                            'Settings',
+                            style: TextStyle(fontSize: 35),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  Container(
-                    color: Colors.white,
-                    child: const Center(
-                      child: Text(
-                        'Only Title',
-                        style: TextStyle(fontSize: 35),
+                      Container(
+                        color: Colors.white,
+                        child: const Center(
+                          child: Text(
+                            'Only Title',
+                            style: TextStyle(fontSize: 35),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  Container(
-                    color: Colors.white,
-                    child: const Center(
-                      child: Text(
-                        'Only Icon',
-                        style: TextStyle(fontSize: 35),
+                      Container(
+                        color: Colors.white,
+                        child: const Center(
+                          child: Text(
+                            'Only Icon',
+                            style: TextStyle(fontSize: 35),
+                          ),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ],
         ),
