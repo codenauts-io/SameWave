@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:same_wave_app/components/custom_background.dart';
-import 'package:same_wave_app/components/custom_menu/custom_menu.dart';
 import 'package:same_wave_app/resources/app_assets/app_assets.dart';
 import 'package:same_wave_app/resources/theme/app_colors.dart';
 import 'package:same_wave_app/screens/settings/settings.dart';
@@ -128,7 +127,7 @@ class SettingsScreenView extends StatelessWidget {
               );
             },
           ),
-          const CustomMenu(),
+          // const CustomMenu(),
         ],
       ),
     );

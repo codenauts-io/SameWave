@@ -7,18 +7,21 @@ import 'package:same_wave_app/resources/theme/app_colors.dart';
 import '../../resources/theme/text_style.dart';
 
 class CustomMenu extends StatefulWidget {
+
+  final SideMenuController sideMenu;
+  final PageController pageController;
+
   const CustomMenu({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+    required this.sideMenu,
+    required this.pageController
+  });
 
   @override
   State<CustomMenu> createState() => _CustomMenuState();
 }
 
 class _CustomMenuState extends State<CustomMenu> {
-  PageController pageController = PageController();
-  SideMenuController sideMenu = SideMenuController();
-
   SideMenuItem getSpacer() {
     return SideMenuItem(
       builder: (context, displayMode) {
@@ -26,6 +29,7 @@ class _CustomMenuState extends State<CustomMenu> {
       },
     );
   }
+
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).extension<TextThemeExtension>()!;
@@ -35,7 +39,7 @@ class _CustomMenuState extends State<CustomMenu> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SideMenu(
-              controller: sideMenu,
+              controller: widget.sideMenu,
               style: SideMenuStyle(
                 showTooltip: false,
                 displayMode: SideMenuDisplayMode.auto,
@@ -69,7 +73,7 @@ class _CustomMenuState extends State<CustomMenu> {
                 child: SideMenuItem(
                   title: 'Support Center',
                   onTap: (index, _) {
-                    sideMenu.changePage(index);
+                    widget.sideMenu.changePage(index);
                   },
                   icon: const Icon(TablerIcons.help_hexagon),
                 ),
@@ -127,9 +131,9 @@ class _CustomMenuState extends State<CustomMenu> {
                 ),
                 getSpacer(),
                 SideMenuItem(
-                  title: 'Dashboard',
+                  title: 'Dashboard 2',
                   onTap: (index, _) {
-                    sideMenu.changePage(index);
+                    widget.sideMenu.changePage(0);
                   },
                   icon: const Icon(TablerIcons.home),
                 ),
@@ -137,7 +141,7 @@ class _CustomMenuState extends State<CustomMenu> {
                 SideMenuItem(
                   title: 'Projects',
                   onTap: (index, _) {
-                    sideMenu.changePage(index);
+                    widget.sideMenu.changePage(1);
                   },
                   icon: const Icon(TablerIcons.folder),
                   trailing: const Icon(TablerIcons.chevron_down),
@@ -146,7 +150,7 @@ class _CustomMenuState extends State<CustomMenu> {
                 SideMenuItem(
                   title: 'Profile',
                   onTap: (index, _) {
-                    sideMenu.changePage(index);
+                    widget.sideMenu.changePage(index);
                   },
                   icon: const Icon(TablerIcons.user),
                 ),
@@ -169,7 +173,7 @@ class _CustomMenuState extends State<CustomMenu> {
                 SideMenuItem(
                   title: 'Payments',
                   onTap: (index, _) {
-                    sideMenu.changePage(index);
+                    widget.sideMenu.changePage(index);
                   },
                   icon: const Icon(TablerIcons.credit_card),
                 ),

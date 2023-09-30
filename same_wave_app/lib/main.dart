@@ -3,9 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:same_wave_app/provider/app/app_state.dart';
 import 'package:same_wave_app/provider/menu/menu_state.dart';
 import 'package:same_wave_app/provider/settings/settings_state.dart';
-import 'package:same_wave_app/routes/app_router.dart';
 import 'package:same_wave_app/resources/theme/text_style.dart';
-import 'package:same_wave_app/screens/home/home.dart';
+import 'package:same_wave_app/screens/dashboard/dashboard.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,7 +28,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -39,7 +38,7 @@ class MyApp extends StatelessWidget {
           TextThemeExtension(),
         ],
       ),
-      routerConfig: AppRouter.router(),
+      home: const DashboardScreen(),
     );
   }
 }
