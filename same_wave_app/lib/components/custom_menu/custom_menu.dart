@@ -145,80 +145,75 @@ class _CustomMenuState extends State<CustomMenu> {
                 ),
               ],
             ),
-            Stack(
-              children: [
-                CustomBackground(image: AppAssets.menuBackground),
-                Expanded(
-                  child: PageView(
-                    controller: pageController,
-                    children: [
-                      Container(
-                        color: Colors.white,
-                        child: const Center(
-                          child: Text(
-                            'Dashboard',
-                            style: TextStyle(fontSize: 35),
-                          ),
-                        ),
+            Expanded(
+              child: PageView(
+                controller: pageController,
+                children: [
+                  Container(
+                    color: Colors.white,
+                    child: const Center(
+                      child: Text(
+                        'Dashboard',
+                        style: TextStyle(fontSize: 35),
                       ),
-                      Container(
-                        color: Colors.white,
-                        child: const Center(
-                          child: Text(
-                            'Users',
-                            style: TextStyle(fontSize: 35),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        color: Colors.white,
-                        child: const Center(
-                          child: Text(
-                            'Files',
-                            style: TextStyle(fontSize: 35),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        color: Colors.white,
-                        child: const Center(
-                          child: Text(
-                            'Download',
-                            style: TextStyle(fontSize: 35),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        color: Colors.white,
-                        child: const Center(
-                          child: Text(
-                            'Settings',
-                            style: TextStyle(fontSize: 35),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        color: Colors.white,
-                        child: const Center(
-                          child: Text(
-                            'Only Title',
-                            style: TextStyle(fontSize: 35),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        color: Colors.white,
-                        child: const Center(
-                          child: Text(
-                            'Only Icon',
-                            style: TextStyle(fontSize: 35),
-                          ),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
-                ),
-              ],
+                  Container(
+                    color: Colors.white,
+                    child: const Center(
+                      child: Text(
+                        'Users',
+                        style: TextStyle(fontSize: 35),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    color: Colors.white,
+                    child: const Center(
+                      child: Text(
+                        'Files',
+                        style: TextStyle(fontSize: 35),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    color: Colors.white,
+                    child: const Center(
+                      child: Text(
+                        'Download',
+                        style: TextStyle(fontSize: 35),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    color: Colors.white,
+                    child: const Center(
+                      child: Text(
+                        'Settings',
+                        style: TextStyle(fontSize: 35),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    color: Colors.white,
+                    child: const Center(
+                      child: Text(
+                        'Only Title',
+                        style: TextStyle(fontSize: 35),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    color: Colors.white,
+                    child: const Center(
+                      child: Text(
+                        'Only Icon',
+                        style: TextStyle(fontSize: 35),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

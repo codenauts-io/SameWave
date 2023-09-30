@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:same_wave_app/components/custom_background.dart';
+
+// import 'package:provider/provider.dart';
+// import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:same_wave_app/components/custom_menu/custom_menu.dart';
 import 'package:same_wave_app/resources/app_assets/app_assets.dart';
 
@@ -21,7 +24,7 @@ class _HomeScreenViewState extends State<HomeScreenView> {
     return Scaffold(
       body: Stack(
         children: [
-          CustomBackground(image: AppAssets.menuBackground),
+          // CustomBackground(image: AppAssets.menuBackground),
           const CustomMenu(),
         ],
       ),
