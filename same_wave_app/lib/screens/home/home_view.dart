@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:same_wave_app/components/custom_menu/custom_menu.dart';
 
 import 'home.dart';
 
@@ -20,7 +21,7 @@ class _HomeScreenViewState extends State<HomeScreenView> {
     // final textTheme = Theme.of(context).extension<TextThemeExtension>()!;
     return Scaffold(
       appBar: AppBar(
-        title: const Text("test title"),
+        title: const CustomMenu(),
       ),
       body: const Stack(
         children: [],
